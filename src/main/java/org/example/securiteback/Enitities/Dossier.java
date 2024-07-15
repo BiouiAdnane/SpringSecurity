@@ -1,9 +1,6 @@
 package org.example.securiteback.Enitities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,4 +14,8 @@ public class Dossier {
     private Long id;
     private String titre;
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "personne_id")
+    private Personne personne;
 }

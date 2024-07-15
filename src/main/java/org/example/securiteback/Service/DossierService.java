@@ -1,7 +1,9 @@
 package org.example.securiteback.Service;
 
 import org.example.securiteback.Enitities.Dossier;
+import org.example.securiteback.Enitities.Personne;
 import org.example.securiteback.Repo.DossierRepository;
+import org.example.securiteback.Repo.PersonneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,13 @@ public class DossierService {
 
     @Autowired
     private DossierRepository dossierRepository;
+    @Autowired
+    private PersonneRepository personneRepository;
 
-    public Dossier createDossier(Dossier dossier) {
+    public Dossier createDossier(Dossier dossier, String email) {
+        Personne personne = personneRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Personne not found with email " + email));
+        dossier.setPersonne(personne);
         return dossierRepository.save(dossier);
     }
 

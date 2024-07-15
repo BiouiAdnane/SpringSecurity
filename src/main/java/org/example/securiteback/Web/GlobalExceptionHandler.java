@@ -1,6 +1,7 @@
 package org.example.securiteback.Web;
 
 import org.example.securiteback.Enitities.ErrorResponse;
+import org.example.securiteback.payload.response.MessageResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

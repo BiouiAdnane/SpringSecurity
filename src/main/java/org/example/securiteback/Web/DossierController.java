@@ -1,10 +1,12 @@
 package org.example.securiteback.Web;
 
 import org.example.securiteback.Enitities.Dossier;
+import org.example.securiteback.Security.UserDetailsImpl;
 import org.example.securiteback.Service.DossierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +20,8 @@ public class DossierController {
 
     @PostMapping
     @PreAuthorize("hasAuthority('USER_CREATE')")
-    public ResponseEntity<Dossier> createDossier(@RequestBody Dossier dossier) {
-        Dossier createdDossier = dossierService.createDossier(dossier);
+    public ResponseEntity<Dossier> createDossier(@RequestBody Dossier dossier, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        Dossier createdDossier = dossierService.createDossier(dossier, userDetails.getUsername());
         return ResponseEntity.ok(createdDossier);
     }
 

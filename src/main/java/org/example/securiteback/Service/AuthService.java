@@ -56,6 +56,7 @@ public class AuthService {
             return new JwtResponse(jwt,
                     userDetails.getId(),
                     userDetails.getUsername(),
+                    userDetails.getFullName(),
                     userDetails.getAuthorities().stream()
                             .map(GrantedAuthority::getAuthority)
                             .collect(Collectors.toList()));

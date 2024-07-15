@@ -11,23 +11,28 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Getter
 public class UserDetailsImpl implements UserDetails {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Getter
     private Long id;
     private final String email;
     private final String password;
+    private final String fullName;
     private final Collection<? extends GrantedAuthority> authorities;
     private final boolean isAccountNonLocked;
 
-    public UserDetailsImpl(Long id, String email, String password, Collection<? extends GrantedAuthority> authorities, boolean isAccountNonLocked) {
+    public UserDetailsImpl(Long id, String email, String password, String fullName, Collection<? extends GrantedAuthority> authorities, boolean isAccountNonLocked) {
         this.id = id;
         this.email = email;
         this.password = password;
+        this.fullName = fullName;
         this.authorities = authorities;
         this.isAccountNonLocked = isAccountNonLocked;
     }
+
 
     public static UserDetailsImpl build(Personne personne) {
         List<GrantedAuthority> authorities = personne.getRole().getPermissions().stream()
@@ -38,6 +43,7 @@ public class UserDetailsImpl implements UserDetails {
                 personne.getId(),
                 personne.getEmail(),
                 personne.getPassword(),
+                personne.getNom() + " "+personne.getPrenom(),
                 authorities,
                 personne.isAccountNonLocked());
     }
@@ -56,6 +62,7 @@ public class UserDetailsImpl implements UserDetails {
     public String getUsername() {
         return email;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {

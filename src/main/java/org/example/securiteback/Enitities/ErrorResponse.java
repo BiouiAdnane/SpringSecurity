@@ -1,8 +1,10 @@
 package org.example.securiteback.Enitities;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class ErrorResponse {
     private final String message;
     private final int statusCode;

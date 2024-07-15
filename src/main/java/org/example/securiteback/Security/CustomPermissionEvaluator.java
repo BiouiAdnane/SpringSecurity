@@ -1,6 +1,5 @@
 package org.example.securiteback.Security;
 
-import org.example.securiteback.Enitities.Personne;
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -16,10 +15,9 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
             return false;
         }
 
-        Personne personne = (Personne) authentication.getPrincipal();
-
-        return personne.getRole().getPermissions().stream()
-                .anyMatch(p -> p.getName().getName().equals(permissionName));
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        return userDetails.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(permissionName));
     }
 
     @Override

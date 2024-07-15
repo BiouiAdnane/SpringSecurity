@@ -1,6 +1,5 @@
 package org.example.securiteback.Security;
 
-import org.example.securiteback.Service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,9 +21,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
