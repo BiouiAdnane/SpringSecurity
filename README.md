@@ -58,3 +58,7 @@ The security configuration is handled in the SecurityConfig class, where HTTP se
 👉 [View the Angular Security Project](https://github.com/BiouiAdnane/AngularSecurity)
 
 This repository demonstrates the implementation of security practices in an Angular application, complementing the security features provided by the Spring Boot backend with Spring Security.
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
